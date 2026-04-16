@@ -71,4 +71,4 @@ document.querySelector('.btn-cta')?.addEventListener('click', (e) => {
   window.location.href = 'pricing_store.html';
 });
 
-console.log('%c☁️ PALKIA STORE — Cloud Gaming Revolution', 'font-size: 16px; font-weight: bold; color: #8b5cf6;');
+console.log('%c☁️ PALKIA STORE — Cloud Gaming', 'font-size: 16px; font-weight: bold; color: #8b5cf6;');

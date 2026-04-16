@@ -1,19 +1,19 @@
-// ==================== AOS INIT ====================
+// AOS INIT
 AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
 
-// ==================== HEADER SCROLL ====================
+// HEADER SCROLL
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
   header.style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.5)' : 'none';
 });
 
-// ==================== MOBILE MENU ====================
+// MOBILE MENU
 const toggle = document.getElementById('mobileToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 if (toggle) toggle.addEventListener('click', () => mobileMenu.classList.toggle('active'));
 document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('active')));
 
-// ==================== MODAL ELEMENTS ====================
+// MODAL ELEMENTS
 const paymentModal = document.getElementById('paymentModal');
 const adminModal = document.getElementById('adminModal');
 const closeModal = document.getElementById('closeModal');
@@ -22,14 +22,14 @@ const continueBtn = document.getElementById('continueBtn');
 const selectedPaketName = document.getElementById('selectedPaketName');
 const selectedPaketPrice = document.getElementById('selectedPaketPrice');
 
-// ==================== STATE ====================
+// STATE
 let selectedPaket = '';
 let selectedHarga = '';
 let selectedMethod = '';
 let selectedPhone = '';
 let currentOrderId = '';
 
-// ==================== GENERATE ORDER ID ====================
+// GENERATE ORDER ID
 function generateOrderId() {
   const prefix = 'PALKIA';
   const date = new Date();
@@ -40,14 +40,14 @@ function generateOrderId() {
   return `${prefix}-${dateStr}-${random}`;
 }
 
-// ==================== FORMAT TANGGAL ====================
+// FORMAT TANGGAL
 function formatTanggal() {
   const date = new Date();
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
   return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-// ==================== OPEN PAYMENT MODAL ====================
+// OPEN PAYMENT MODAL
 function openPaymentModal(paket, harga) {
   selectedPaket = paket;
   selectedHarga = harga;
@@ -63,21 +63,21 @@ function openPaymentModal(paket, harga) {
   paymentModal.classList.add('active');
 }
 
-// ==================== OPEN ADMIN MODAL ====================
+// OPEN ADMIN MODAL
 function openAdminModal() {
   paymentModal.classList.remove('active');
   adminModal.classList.add('active');
   document.querySelectorAll('.admin-option').forEach(opt => opt.classList.remove('selected'));
 }
 
-// ==================== CLOSE ALL MODALS ====================
+// CLOSE ALL MODALS
 function closeAllModals() {
   paymentModal.classList.remove('active');
   adminModal.classList.remove('active');
   selectedMethod = '';
 }
 
-// ==================== ORDER BUTTONS ====================
+// ORDER BUTTONS
 document.querySelectorAll('.btn-order').forEach(btn => {
   btn.addEventListener('click', function() {
     const paket = this.getAttribute('data-paket');
@@ -86,7 +86,7 @@ document.querySelectorAll('.btn-order').forEach(btn => {
   });
 });
 
-// ==================== PAYMENT METHOD SELECTION ====================
+// PAYMENT METHOD SELECTION
 document.querySelectorAll('.payment-option').forEach(opt => {
   opt.addEventListener('click', function() {
     document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
@@ -96,7 +96,7 @@ document.querySelectorAll('.payment-option').forEach(opt => {
   });
 });
 
-// ==================== ADMIN SELECTION ====================
+// ADMIN SELECTION
 document.querySelectorAll('.admin-option').forEach(opt => {
   opt.addEventListener('click', function() {
     document.querySelectorAll('.admin-option').forEach(o => o.classList.remove('selected'));
@@ -110,7 +110,7 @@ document.querySelectorAll('.admin-option').forEach(opt => {
   });
 });
 
-// ==================== CONTINUE TO WHATSAPP ====================
+// CONTINUE TO WHATSAPP
 function continueToWhatsApp() {
   if (!selectedMethod) {
     alert('Silakan pilih metode pembayaran terlebih dahulu!');
@@ -124,7 +124,7 @@ function continueToWhatsApp() {
   
   const tanggal = formatTanggal();
   
-  // PESAN TANPA NAMA ADMIN
+  // PESAN
   const message = `*ORDER DETAIL - PALKIA STORE*%0A%0A` +
     `📋 ORDER ID: *${currentOrderId}*%0A` +
     `📅 TANGGAL: *${tanggal}*%0A` +
@@ -137,7 +137,7 @@ function continueToWhatsApp() {
   closeAllModals();
 }
 
-// ==================== CONTINUE BUTTON ====================
+// CONTINUE BUTTON
 if (continueBtn) {
   continueBtn.addEventListener('click', function() {
     if (!selectedMethod) {
@@ -148,7 +148,7 @@ if (continueBtn) {
   });
 }
 
-// ==================== CLOSE MODAL EVENTS ====================
+// CLOSE MODAL EVENTS
 if (closeModal) closeModal.addEventListener('click', closeAllModals);
 if (closeAdminModal) closeAdminModal.addEventListener('click', closeAllModals);
 
@@ -168,5 +168,5 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ==================== CONSOLE ====================
+// CONSOLE
 console.log('%c☁️ PALKIA STORE — Pricing Page', 'font-size: 16px; font-weight: bold; color: #8b5cf6');
